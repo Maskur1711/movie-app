@@ -12,23 +12,25 @@ import Navbar from "./Components/Navbar";
 import { useNavigate } from "react-router-dom";
 
 const App: React.FC = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    if (!user) {
+    const isGuest = localStorage.getItem("isGuest");
+    if (!user && !isGuest) {
       navigate("/login");
     }
   }, [navigate]);
 
   const user = localStorage.getItem("user");
+  const isGuest = localStorage.getItem("isGuest");
 
   return (
     <>
-      {user && <Navbar />}
+      {(user || isGuest) && <Navbar />}
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

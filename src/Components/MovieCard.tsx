@@ -48,10 +48,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onAddFavorite }) => {
             onClick={() => onAddFavorite(movie)}
             sx={{
               marginTop: 2,
-              backgroundColor: "#4477CE", // Button Color
-              color: "#fff", // Text color for better contrast
+              backgroundColor: "#4477CE",
+              color: "#fff",
               "&:hover": {
-                backgroundColor: "#355F9C", // Optional: Darker shade on hover
+                backgroundColor: "#355F9C",
               },
             }}
           >

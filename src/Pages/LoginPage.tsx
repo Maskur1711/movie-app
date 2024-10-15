@@ -16,9 +16,11 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = () => {
     if (email === "guest") {
+      localStorage.setItem("isGuest", "true");
       navigate("/");
     } else {
       localStorage.setItem("user", JSON.stringify({ email }));
+      localStorage.removeItem("isGuest");
       navigate("/");
     }
   };
@@ -63,7 +65,13 @@ const LoginPage: React.FC = () => {
             <Button variant="contained" onClick={handleLogin}>
               Login
             </Button>
-            <Button variant="outlined" onClick={() => navigate("/")}>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                localStorage.setItem("isGuest", "true");
+                navigate("/");
+              }}
+            >
               Continue as Guest
             </Button>
           </Box>
